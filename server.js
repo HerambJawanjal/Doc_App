@@ -8,9 +8,6 @@ const morgan=require('morgan');
 const connectDB = require('./config/db');
 
 
-
-
-
 //dotenv config 
 dotenv.config();
 
@@ -19,14 +16,12 @@ const DatabaseConnect=connectDB();
 
 const app=express();
 // middleware
-app.use(express.json());
-app.use(morgan("dev"));
+app.use(express.json());  
+app.use(morgan("dev"));   
 
-app.get('/',(req,res)=>{
-  res.status(200).send({
-    message:"hello",
-  })
-})
+
+//routes
+app.use("/api/v1/user",require("./routes/userRoutes")); 
 
 const port=process.env.PORT || 8080;
 
